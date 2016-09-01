@@ -62,7 +62,12 @@
 					     $this->data=$data;
 					     $this->middle='seller/home';
 					     $this->layout();
-				    }
+				    }else{
+              $data['signup_link']=base_url().'admin/my_profile/view_profile';
+               $this->data=$data;
+               $this->middle='admin/home';
+               $this->layout(); 
+            }
         	}
 
         //}

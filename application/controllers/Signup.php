@@ -90,7 +90,12 @@
 					$data = array('user_id' => $insert_id,
 									'role_id' => $usr_type );
 					$data['status']=$this->Signup_model->add_user($table_name,$data);
-					//print_r($data);	
+					//print_r($data);
+					$data['username']='';
+				    $data['signup_name']="Signup";
+				    $data['signup_link']=base_url().'home/signup';
+				    $data['login_link']=base_url().'home/login';
+				    $data['login_name']='Login';	
 					$this->data=$data;
 					$this->middle='login';
 					$this->layout();

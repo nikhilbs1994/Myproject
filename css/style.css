@@ -76,6 +76,7 @@ height: 400px;
 
 input{
     position: relative;
+    display: inline-block;
 }
 input[type=text] {
     
@@ -104,6 +105,24 @@ input[type=file] {
     text-align:right;  
     width:205px;  
     
+}
+select{
+    padding: 00px 0px;
+    margin: 8px 6px;
+    position: relative;
+    display: inline-block;
+    text-align:right;  
+    width:205px;  
+    height: 30px;
+    
+}
+textarea{
+	padding: 00px 0px;
+    margin: 8px 6px;
+    position: relative;
+    display: inline-block;
+    text-align:right;  
+    width:205px;  
 }
 input[type=submit]{
     background-color: #8c9299; 
@@ -149,9 +168,13 @@ h2{
 }
 label{
     display: inline-block;
-    width:100px;
-    text-align: left; 
+    width:125px;
+    text-align: justify; 
+    text-align: top;
+}
+#error{
+color: red;
 }
 #status{
-color: red;
+color: green;
 }
