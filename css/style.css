@@ -60,7 +60,43 @@ color: gray;
 width: 600px;
 height: 600px;
 }
-
+.signup1{
+    
+-webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+-moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+margin: 0 auto;
+text-align: center;
+font-family: "Times New Roman", Times, serif;
+color: gray;
+width: 1200px;
+height: 120px;
+}
+.product_search{
+    
+-webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+-moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+margin: 0 auto;
+text-align: justify;
+padding: 10px;
+font-family: "Times New Roman", Times, serif;
+color: gray;
+width: 1200px;
+height: 120px;
+}
+.search{
+    
+-webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+-moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+margin: 0 auto;
+text-align: center;
+font-family: "Times New Roman", Times, serif;
+color: gray;
+width: 600px;
+height: 600px;
+}
 .login{
 	
 -webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
@@ -75,8 +111,7 @@ height: 400px;
 }
 
 input{
-    position: relative;
-    display: inline-block;
+   vertical-align: middle;
 }
 input[type=text] {
     
@@ -119,9 +154,9 @@ select{
 textarea{
 	padding: 00px 0px;
     margin: 8px 6px;
-    position: relative;
-    display: inline-block;
-    text-align:right;  
+    
+    vertical-align: middle;
+    text-align: justify;  
     width:205px;  
 }
 input[type=submit]{
@@ -170,11 +205,37 @@ label{
     display: inline-block;
     width:125px;
     text-align: justify; 
-    text-align: top;
+    
 }
 #error{
 color: red;
 }
 #status{
 color: green;
+}
+.product_pic{
+     height:100px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:100px;
+    
+    display: inline-block;
+}
+.product_search_text{
+    height:100px;
+    width:auto;/*maintain aspect ratio*/
+    
+    display: inline-block;
+    text-align: justify;
+    vertical-align: top;
+}
+.product_search_img{
+    height:100px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:100px;
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+ul.ui-autocomplete {
+    list-style: none;
 }

@@ -1,3 +1,10 @@
+<?
+/*
+	@author Nikhil
+	*@version 1.0
+	*View to display form for add category of product. 
+*/
+?>
 <div class="content">
 <div class="login">
 	<h2>ADD CATEGORY</h2>
@@ -6,9 +13,9 @@
 		<?php $this->load->library('form_validation');?>  
  		<?php echo form_open('form'); ?>
 		Category
-		<input type = "text" name = "category_name" value="<?php echo set_value('category_name'); ?>">
+		<input type="text" name="category_name" value="<?php echo set_value('category_name'); ?>">
 		<br><br>
-		<input type = "submit" name = "login" value = "Add Category">
+		<input type="submit" name="login" value="Add Category">
 		<br>
 		<span id="error">
 		<?php

@@ -1,10 +1,16 @@
 <?php 
-/**
- * 
- */
- class Forgot_pwd_model extends CI_Model
- {
- 	
+/*
+  @author Nikhil
+  *@version 1.0
+  *Class to fogot password operation
+*/
+class Forgot_pwd_model extends CI_Model{
+	/**
+	* 
+	* function to update new password
+	* @param $pwd
+	* @return boolean
+	**/
  	function update_pwd($table_name,$pwd,$where)
  	{
  		$this->load->database();
@@ -15,7 +21,6 @@
     	}else{
     		return false;
     	}
-
  	}
- } 
- ?>
+} 
+?>
