@@ -14,7 +14,7 @@
 		<a href="">Contact us</a>
 		<a href="">About us</a>
 		<a href="<?php echo $signup_link?>" id="link_login"><?php echo $signup_name; ?></a>
-		<a href="<?php echo $login_link?>" id="link_login" style="float:right;"><?php echo $login_name ?></a>
+		<a href="<?php echo $login_link?>" id="link_login" ><?php echo $login_name ?></a>
 	</div>
 </div>
 

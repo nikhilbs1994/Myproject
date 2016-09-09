@@ -88,7 +88,7 @@ class Add_category extends MY_Controller
 	   		$where = array('prod_id' => $prod_id );
 	 		$this->load->model('admin/Product_model');
 	 		$data['prod_details'] =$this->Product_model->view_prod($where);
-	 		print_r($data);
+	 		
 
 	    	$data['signup_name'] = $_SESSION['fname'];
 	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';

@@ -18,9 +18,10 @@
 		Password     
 		<input type="password" name="password" value="<?php echo set_value('password'); ?>">
 		<br>
-		<a href="<?php echo base_url().'home/forgot_pwd'; ?>">Forgot Password</a><br>
+		
 		<input type="submit" name="login" value="Login">
-		<br>
+		<br><br><br>
+		<a href="<?php echo base_url().'home/forgot_pwd'; ?>">Forgot Password</a><br>
 		<span id="status">
 		<?php
 			echo validation_errors(); 

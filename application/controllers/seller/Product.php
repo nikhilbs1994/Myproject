@@ -56,14 +56,14 @@ class Product extends MY_Controller
 		
 		/*if(empty($_FILES['uploads']['prod_pic'])){
 			$this->form_validation->set_rules('prod_pic', 'Product picture', 'required');
-		}*/
+		}
 		
-		$file_no = count($_FILES["prod_pic"]["name"]);
+		$file_no = count($_FILES["prod_pic"]["name"]);*/
 		
-		/*if($file_no>3){
+		if($file_no>3){
 			$this->form_validation->set_rules('prod_pic', 'Product picture', 'max', array('max' => 'Maximuim 3 file allowed'));
 		}
-		*/
+		
 		$img_status = 0;
 		$data = '';
 		$data['category'] = $this->get_category();
@@ -156,6 +156,26 @@ class Product extends MY_Controller
 						
 			}
 		}
+	}
+	/**
+    * 
+    * function to load product details
+    * @param void
+    * @return $view
+    **/
+   	public function view_prod($prod_id){
+		$where = array('prod_id' => $prod_id );
+ 		$this->load->model('buyer/Product_model');
+ 		$data['prod_details'] =$this->Product_model->view_prod($where);
+ 		
+
+    	$data['signup_name'] = $_SESSION['fname'];
+    	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
+    	$data['login_link'] = 'home/signup';
+    	$data['login_name'] = 'Logout';
+    	$this->data = $data;
+		$this->middle = 'seller/view_product';
+		$this->layout();
 	}
 } 
 ?>

@@ -31,10 +31,13 @@ class Product_model extends CI_Model{
 	public function view_product($where){
 		$this->load->database();
 		$table_name = 'product';
-		$query = $this->db->get_where($table_name, $where);
+		$this->db->where($where);
+		$query = $this->db->get($table_name);
+		
 		if ( $query->num_rows() > 0 )
 		{
     		$row = $query->row_array();
+    		
     		return $row;
 		}else{
 			return false;
@@ -69,6 +72,43 @@ class Product_model extends CI_Model{
 		$this->load->database();
 		$query = $this->db->get("category");
 		return $query->result();
+	}
+	/**
+	* 
+	* function to get product details for seller
+	* @param $where
+	* @return $row
+	**/
+	public function view_seller_prod($where){
+		$this->load->database();
+		$table_name = 'product';
+		
+		$query = $this->db->get_where($table_name, $where);
+		if ( $query->num_rows() > 0 )
+		{
+    		$row = $query->result();
+    		return $row;
+		}else{
+			return false;
+		}
+	}
+		/**
+	* 
+	* function to get product details for admin
+	* @param $where
+	* @return $row
+	**/
+	public function view_admin_prod(){
+		$this->load->database();
+		$table_name = 'product';
+		$query = $this->db->get($table_name);
+		if ( $query->num_rows() > 0 )
+		{
+    		$row = $query->result();
+    		return $row;
+		}else{
+			return false;
+		}
 	}
 }
 ?>

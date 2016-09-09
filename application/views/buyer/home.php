@@ -73,10 +73,10 @@
 		echo "<img src=".'"'.base_url().$list[0].'"'." float=".'"left"'."class=".'"product_pic"'.">";
 		echo "</div>";
 		echo '<div class='."product_search_text".'>';
-		echo "<h3>".$row->prod_name."</h3>";
-		echo "<h4>".$row->phno."</h4>";
-		echo "<h4>".$row->email."</h4>";
-		echo "<a href=".base_url().'buyer/product/view_prod/'.$row->prod_id.'>View details</a>';
+		echo "<h4>".$row->prod_name."</h4>";
+		echo "<p>".$row->phno;
+		echo "<br>&#x20b9;".$row->rate;
+		echo "<a href=".base_url().'buyer/product/view_prod/'.$row->prod_id.'>View details</a></p>';
 		echo "</div>";
 		echo "</div>";
 	}

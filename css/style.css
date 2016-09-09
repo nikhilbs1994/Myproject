@@ -25,16 +25,38 @@
     
 } 
 #header_link{
-    background-color: #8c9299;
+    margin: 10 auto;
+    background-color: #336699;
     width: 100%;
     position: relative;
+
+}
+#content_link{
+    background-color: #336699;
+    width: 100%;
+    position: relative;
+
+}
+a{
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    background-color: #336699;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 2px;
+
+}
+a:hover{
+    background-color: #6B9ACA;
 
 }
 .header a{
     display: inline-block;
     position: relative;
     left: 10px;
-    background-color: #8c9299;
+    background-color: #336699;
     color: white;
     padding: 5px;
     text-decoration: none;
@@ -48,6 +70,38 @@
       
     
 }
+.img_slide{
+    -webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    margin: 0 auto;
+    height:200px;
+    width: 100%;
+     display: inline-block;
+  position: relative;
+}
+.img_slide div {
+  background-color: white;
+  width: 100%;
+  display: inline-block;
+  display: none;
+
+}
+.img_slide img {
+  width: 100%;
+
+
+}
+.prev {
+    position:absolute;top:50%;left:0;
+
+ }
+.next {
+  position:absolute;top:50%;right:0;
+}
+
+
+
 .signup{
     
 -webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
@@ -57,20 +111,23 @@ margin: 0 auto;
 text-align: center;
 font-family: "Times New Roman", Times, serif;
 color: gray;
-width: 600px;
-height: 600px;
+width: 900px;
+height: 700px;
+width: 100%;
 }
 .signup1{
     
 -webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
 -moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
 box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
-margin: 0 auto;
+margin: 10 auto;
+margin-bottom: 20PX;
 text-align: center;
 font-family: "Times New Roman", Times, serif;
 color: gray;
 width: 1200px;
 height: 120px;
+width: 100%;
 }
 .product_search{
     
@@ -79,11 +136,11 @@ height: 120px;
 box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
 margin: 0 auto;
 text-align: justify;
-padding: 10px;
 font-family: "Times New Roman", Times, serif;
 color: gray;
-width: 1200px;
+width: 600px;
 height: 120px;
+
 }
 .search{
     
@@ -96,6 +153,8 @@ font-family: "Times New Roman", Times, serif;
 color: gray;
 width: 600px;
 height: 600px;
+width: 100%;
+
 }
 .login{
 	
@@ -112,6 +171,7 @@ height: 400px;
 
 input{
    vertical-align: middle;
+	
 }
 input[type=text] {
     
@@ -132,6 +192,16 @@ input[type=password] {
     border-radius: 2px;
     box-sizing: border-box;
 }
+input[type=email] {
+    
+    padding: 6px 18px;
+    margin: 8px 6px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
 input[type=file] {
     padding: 00px 0px;
     margin: 8px 6px;
@@ -160,7 +230,7 @@ textarea{
     width:205px;  
 }
 input[type=submit]{
-    background-color: #8c9299; 
+    background-color: #336699; 
     border: none;
     color: white;
     margin-top: 20px;
@@ -180,7 +250,7 @@ input[type=radio]{
     
 }
 button{
-    background-color: #8c9299; 
+    background-color: #336699; 
     border: none;
     color: white;
     margin-top: 20px;
@@ -191,7 +261,7 @@ button{
     font-size: 14px;
 }
 hr{
-    color: gray;
+    color: 336699;
     width: 90%;
 
 }
@@ -203,8 +273,8 @@ h2{
 }
 label{
     display: inline-block;
-    width:125px;
-    text-align: justify; 
+    width:140px;
+    text-align: justify;
     
 }
 #error{
@@ -217,16 +287,18 @@ color: green;
      height:100px;
     width:auto;/*maintain aspect ratio*/
     max-width:100px;
-    
+    margin: 10PX 10PX;
     display: inline-block;
 }
 .product_search_text{
-    height:100px;
-    width:auto;/*maintain aspect ratio*/
     
+    width:auto;/*maintain aspect ratio*/
+    position: absolute;
     display: inline-block;
     text-align: justify;
     vertical-align: top;
+    padding-top: 0px;
+    margin-left: 20px;
 }
 .product_search_img{
     height:100px;
@@ -235,7 +307,15 @@ color: green;
     margin-right: 2px;
     display: inline-block;
     vertical-align: bottom;
+    position: relative;
 }
 ul.ui-autocomplete {
     list-style: none;
+}
+div.error {
+    color: red;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    padding-top: 15px;
 }

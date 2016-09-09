@@ -34,5 +34,24 @@ class Product_model extends CI_Model
     	}
 
 	}
+	/**
+	* 
+	* function to get product details
+	* @param $where
+	* @return $row
+	**/
+	public function view_seller_prod($where){
+		$this->load->database();
+		$table_name = 'product';
+		echo "dfhd";
+		$query = $this->db->get_where($table_name, $where);
+		if ( $query->num_rows() > 0 )
+		{
+    		$row = $query->row_array();
+    		return $row;
+		}else{
+			return false;
+		}
+	}
 }
 ?>

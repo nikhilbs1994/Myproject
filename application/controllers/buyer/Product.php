@@ -99,9 +99,7 @@ class Product extends MY_Controller{
 		$where = array('prod_id' => $prod_id );
  		$this->load->model('buyer/Product_model');
  		$data['prod_details'] =$this->Product_model->view_prod($where);
- 		print_r($data);
-
-    	$data['signup_name'] = $_SESSION['fname'];
+ 		$data['signup_name'] = $_SESSION['fname'];
     	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
     	$data['login_link'] = 'home/signup';
     	$data['login_name'] = 'Logout';
