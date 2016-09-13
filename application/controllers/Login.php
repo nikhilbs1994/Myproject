@@ -13,7 +13,8 @@ class Login extends MY_Controller
         $this->load->model('admin/product_model');
         $this->load->model('seller/Product_model');
 
-    }   
+    } 
+    
     /**
     * 
     * function to check user is valid
@@ -29,49 +30,52 @@ class Login extends MY_Controller
     		$this->middle = 'login';
     		$this->layout();
         }else{*/
-        	$data = '';
-        	$pwd = md5($_POST['password']);
-        	$where  = array('email' => $_POST['username'] ,
-        					'pwd' => $pwd );
-        	$this->load->model('Login_model');
-        	$usr_valid = $this->Login_model->login_check($where);
-        	if($usr_valid == 0){
-        		$data['status'] = "Invalid username and password";
-        		echo "invalid";
-        		$data['username'] = '';
-                $data['signup_name'] = "Signup";
-                $data['signup_link'] = base_url().'home/signup';
-                $data['login_link'] = base_url().'home/login';
-                $data['login_name'] = 'Login';
-                $this->data = $data;
-        		$this->middle = 'login';
-    		    $this->layout();
-        	}else{
-        		$data['username'] = $usr_valid['email'];
-        		$data['signup_name'] = $usr_valid['fname'];
-        		$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-        		$data['login_link'] = 'logout';
-        		$data['login_name'] = 'Logout';
-                $session_data = array('user_id' => $usr_valid['usr_id'], 'fname' => $usr_valid['fname']);
-                $this->session->set_userdata($session_data);
 
-                if(isset($_SESSION['prod_id'])){
-                    $this->view_prod($_SESSION['prod_id']); 
-                    return;
-                }
-        		if($usr_valid['usr_type'] == 3){
-                    $data['category'] =$this->get_category();
-                    $data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-                    $this->data = $data; 
-    			    $this->middle='buyer/home';
-            	    $this->layout();
-    		    }elseif ($usr_valid['usr_type'] == 2){
-                    $this->view_seller_prod($usr_valid['usr_id']);
-    		    }else{
-                    $this->view_admin_prod($usr_valid);
-                }
-        	}
+
+            	$data = '';
+            	$pwd = md5($_POST['password']);
+            	$where  = array('email' => $_POST['username'] ,
+            					'pwd' => $pwd );
+            	$this->load->model('Login_model');
+            	$usr_valid = $this->Login_model->login_check($where);
+            	if($usr_valid == 0){
+            		$data['status'] = "Invalid username and password";
+            		echo "invalid";
+            		$data['username'] = '';
+                    $data['signup_name'] = "Signup";
+                    $data['signup_link'] = base_url().'home/signup';
+                    $data['login_link'] = base_url().'home/login';
+                    $data['login_name'] = 'Login';
+                    $this->data = $data;
+            		$this->middle = 'login';
+        		    $this->layout();
+            	}else{
+            		$data['username'] = $usr_valid['email'];
+            		$data['signup_name'] = $usr_valid['fname'];
+            		$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
+            		$data['login_link'] = base_url().'home/logout';
+            		$data['login_name'] = 'Logout';
+                    $session_data = array('user_id' => $usr_valid['usr_id'], 'fname' => $usr_valid['fname'],'usr_type'=> $usr_valid['usr_type']);
+                    $this->session->set_userdata($session_data);
+
+                    if(isset($_SESSION['prod_id'])){
+                        $this->view_prod($_SESSION['prod_id']); 
+                        return;
+                    }
+            		if($usr_valid['usr_type'] == 3){
+                        $data['category'] =$this->get_category();
+                        $data['signup_link'] = base_url().'buyer/my_profile/view_profile';
+                        $this->data = $data; 
+        			    $this->middle='buyer/home';
+                	    $this->layout();
+        		    }elseif ($usr_valid['usr_type'] == 2){
+                        $this->view_seller_prod($usr_valid['usr_id']);
+        		    }else{
+                        $this->view_admin_prod();
+                    }
+            	}
         //}
+
     }
     /**
     * 
@@ -88,7 +92,7 @@ class Login extends MY_Controller
        
         $data['signup_name'] = $_SESSION['fname'];
         $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = 'logout';
+        $data['login_link'] = base_url().'home/logout';;
         $data['login_name'] = 'Logout';
         $this->data=$data;
         $this->middle='admin/view_product';
@@ -113,7 +117,7 @@ class Login extends MY_Controller
     }
     /**
     * 
-    * function to view product list  based on seller
+    * function to view product list  based on admin
     * @param integer $prod_id
     * @return view
     **/
@@ -121,7 +125,7 @@ class Login extends MY_Controller
         $data['prod_details'] = $this->Product_model->view_admin_prod();
         $data['signup_name'] = $_SESSION['fname'];
         $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = 'logout';
+        $data['login_link'] = base_url().'home/logout';;
         $data['login_name'] = 'Logout';
         $this->data=$data;
         $this->middle='admin/home';
@@ -138,25 +142,6 @@ class Login extends MY_Controller
         $category = $this->Product_model->get_category();
         return $category;
     }
-     /**
-    * 
-    * function to logout
-    * @param null
-    * @return $catrgory
-    **/
-    public function logout(){
-        $this->session->unset_userdata('user_id');
-        $this->session->unset_userdata('fname');
-        $this->session->unset_userdata('prod_id');
-        $this->session->sess_destroy();
-        $data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-        $this->data = $data;
-        $this->middle = 'login';
-        $this->layout();
-    }
+
 }
 ?>

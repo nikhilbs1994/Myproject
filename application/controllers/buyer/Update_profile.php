@@ -20,8 +20,8 @@
  		$data['user_details'] = $this->My_profile_model->view_profile($where);
 		 	$data['signup_name'] = $_SESSION['fname'];
     	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-    	$data['login_link'] = 'home/signup';
-    	$data['login_name'] = 'Logout';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
     	$this->data = $data;
 		$this->middle ='buyer/my_profile';
 		$this->layout();
@@ -41,8 +41,8 @@
  		
     	$data['signup_name'] = $_SESSION['fname'];
     	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-    	$data['login_link'] = 'home/signup';
-    	$data['login_name'] = 'Logout';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
     	return $data;
 	}
     /**

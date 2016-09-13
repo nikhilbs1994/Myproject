@@ -110,5 +110,24 @@ class Product_model extends CI_Model{
 			return false;
 		}
 	}
+		/**
+	* 
+	* function to get product details for seller
+	* @param $where
+	* @return $row
+	**/
+	public function view_home_prod(){
+		$this->load->database();
+		$table_name = 'product';
+		$this->db->order_by('prod_id','desc');
+		$query = $this->db->get($table_name,9);
+		if ( $query->num_rows() > 0 )
+		{
+    		$row = $query->result();
+    		return $row;
+		}else{
+			return false;
+		}
+	}
 }
 ?>

@@ -19,8 +19,8 @@ class My_profile extends MY_Controller
 		$data['user_details'] = $this->My_profile_model->view_profile($where);
 		$data['signup_name'] = $_SESSION['fname'];
 		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-		$data['login_link'] = 'home/signup';
-		$data['login_name'] = 'Logout';
+    	$data['login_link'] = base_url().'home/logout'; 
+    	$data['login_name'] = 'Logout';
 		$this->data = $data;
 		$this->middle ='seller/my_profile';
 		$this->layout();
@@ -39,8 +39,8 @@ class My_profile extends MY_Controller
 		$data['user_details'] = $this->My_profile_model->view_profile($where);
 		$data['signup_name']  = $_SESSION['fname'];
 		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-		$data['login_link'] = 'home/signup';
-		$data['login_name'] = 'Logout';
+    	$data['login_link'] = base_url().'home/logout'; 
+    	$data['login_name'] = 'Logout';
 		$this->data = $data;
 		$this->middle = 'seller/update_profile';
 		$this->layout();

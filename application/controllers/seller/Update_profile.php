@@ -18,10 +18,10 @@
  		$where = array('usr_id' => $usr_id );
  		$this->load->model('seller/My_profile_model');
  		$data['user_details'] = $this->My_profile_model->view_profile($where);
-		 	$data['signup_name'] = $_SESSION['fname'];
-    	$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-    	$data['login_link'] = 'home/signup';
-    	$data['login_name'] = 'Logout';
+		$data['signup_name'] = $_SESSION['fname'];
+		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
+		$data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
     	$this->data = $data;
 		$this->middle ='seller/my_profile';
 		$this->layout();
@@ -39,10 +39,10 @@
  		$this->load->model('seller/My_profile_model');
  		$data['user_details'] = $this->My_profile_model->view_profile($where);
  		
-    	$data['signup_name'] = $_SESSION['fname'];
-    	$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-    	$data['login_link'] = 'home/signup';
-    	$data['login_name'] = 'Logout';
+		$data['signup_name'] = $_SESSION['fname'];
+		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
     	return $data;
 	}
     /**

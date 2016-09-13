@@ -6,9 +6,8 @@
 */
 ?>
 <div class="content">
-
+<meta http-equiv="refresh" content="30; ,URL=<?php echo base_url()."/home/login";?>">
 	
-		
 
 
 <?php

@@ -1,11 +1,9 @@
 .header{
-
+    width: 100%;
     height: 110px;
     background-color: #354458;
-    background: #354458;
     padding-bottom: 0;
-    margin: 0 auto;
-
+    margin: 0;
 }
 .footer{
     width: 100%;
@@ -27,11 +25,12 @@
     
 } 
 #header_link{
-    margin: 0 auto;
+    margin: 10 auto;
     background-color: #336699;
     width: 100%;
-}
+    position: relative;
 
+}
 #content_link{
     background-color: #336699;
     width: 100%;
@@ -45,7 +44,6 @@ a{
     background-color: #336699;
     color: white;
     padding: 5px;
-    right: 10px;
     text-decoration: none;
     border-radius: 2px;
 
@@ -342,7 +340,6 @@ div.error {
     font-family: "Times New Roman", Times, serif;
     color: gray;
     min-width: 140px;
-    max-width: 140px;
     height: 225px;
     margin: 10px;
 }
@@ -364,12 +361,4 @@ div.error {
  }
 .prod_next {
   position:absolute;top:50%;right:0;
-}
-body{
-    padding: 0px;
-    margin: -20px 0px;
-}
-html{
-    padding: 0px;
-    margin: 0px 0px;
 }

@@ -14,6 +14,7 @@ class Product extends MY_Controller{
 	public function search_tag(){
 		$keyword = $this->input->post('term');
 		$data['response'] = 'false'; //Set default response
+
 		$this->load->model('buyer/Product_model');
 		$query = $this->Product_model->get_prod($keyword); //Search DB
 		if( ! empty($query) ) {
@@ -48,10 +49,10 @@ class Product extends MY_Controller{
 		if ($this->form_validation->run() == FALSE)
 		{	
 			$data['username'] = '';
-	        $data['signup_name'] = "Signup";
-	        $data['signup_link'] = base_url().'home/signup';
-	        $data['login_link'] = base_url().'home/login';
-	        $data['login_name'] = 'Login';
+			$data['signup_name'] = $_SESSION['fname'];
+			$data['signup_link'] = base_url().'seller/my_profile/view_profile';
+			$data['login_link'] = base_url().'home/logout';        		
+			$data['login_name'] = 'Logout';
 	        $data['category']= $this->get_category();
 	    	$this->data = $data;
 			$this->middle = 'buyer/home';
@@ -68,10 +69,10 @@ class Product extends MY_Controller{
 			$data['product_details']= $row;
 			 $data['category'] = $this->get_category();
 			$data['username'] = '';
-	        $data['signup_name'] = "Signup";
-	        $data['signup_link'] = base_url().'home/signup';
-	        $data['login_link'] = base_url().'home/login';
-	        $data['login_name'] = 'Login';
+			$data['signup_name'] = $_SESSION['fname'];
+			$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
+        	$data['login_link'] = base_url().'home/logout'; 
+        	$data['login_name'] = 'Logout';
 			$this->data = $data;
 			$this->middle = 'buyer/home';
 			$this->layout();
@@ -101,7 +102,7 @@ class Product extends MY_Controller{
  		$data['prod_details'] =$this->Product_model->view_prod($where);
  		$data['signup_name'] = $_SESSION['fname'];
     	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-    	$data['login_link'] = 'home/signup';
+    	$data['login_link'] = base_url().'home/logout'; 
     	$data['login_name'] = 'Logout';
     	$this->data = $data;
 		$this->middle = 'buyer/view_product';
