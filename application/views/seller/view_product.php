@@ -13,8 +13,10 @@
 				$prod_status="Inactive";
 			}elseif ($prod_details['status'] == 1) {
 				$prod_status="Active";		
-			}else{
+			}elseif ($prod_details['status'] == 2){
 				$prod_status="Rejected";
+			}else{
+				$prod_status="Sold";
 			}
 		 ?>
  		<label>Product Name</label>
@@ -40,7 +42,7 @@
 		<br><br><br>
 		<label>Status</label>
 		<label><?php echo $prod_status ?></label>
-		<br><br><br>
+		<br>
 		<label>Product Pic </label>
 		<br>
 		<?php 
@@ -49,8 +51,14 @@
     			echo '<img src="'.base_url().$link.'" class="product_pic" >';
     		}
 		?>
-		
-		
+		<br>
+		<?php 
+		echo "<a href=".base_url().'seller/product/delete_prod/'.$prod_details['prod_id'].'>Delete</a>&nbsp'; 
+		echo "<a href=".base_url().'seller/product/update_products/'.$prod_details['prod_id'].'>Update</a>&nbsp';
+		if($prod_details['status'] == 1){
+			echo "<a href=".base_url().'seller/product/sold_prod/'.$prod_details['prod_id'].'>Sold</a>';
+		}
+		?>
 
 </div>
 </div>

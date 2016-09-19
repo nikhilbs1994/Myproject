@@ -5,36 +5,42 @@
 	*View to display update product form of seller. 
 */
 ?>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <div class="content">
 <div class="signup">
 	<h2>ADD PRODUCT</h2>
- 	<form action="<?php echo base_url().'seller/product/add_product'?>" id="add_usr" method="post" 
+ 	<form action="<?php echo base_url().'seller/product/update_prod/'.$prod_details['prod_id']?>" id="add_usr" method="post" 
  	enctype="multipart/form-data">
 		<?php $this->load->library('form_validation');?>  
  		<?php echo form_open('form'); ?>  
 		<label>Product Name</label>
-		<input type="text" name="prod_name" id="prod_name" value="<?php echo set_value('prod_name'); ?>" required>
+		<input type="text" name="prod_name" id="prod_name" value="<?php echo $prod_details['prod_name']; ?>" required>
 		<br>
 		<label>Category</label>
 		<select name="category">
 			<?php foreach ($category as $row) {
+				if($prod_details['category']==$row->ct_name){
+				echo "<option value=".$row->ct_name." selected>".$row->ct_name."</option>";
+
+			}else{
 				echo "<option value=".$row->ct_name.">".$row->ct_name."</option>";
 				
-			} ?>
+			} 
+			}
+			?>
+			
 		</select>
 		<br>
 		<label>Phone No.</label>
-		<input type="text" name="phno" id="phno" value="<?php echo set_value('phno'); ?>" required>
+		<input type="text" name="phno" id="phno" value="<?php echo $prod_details['phno']; ?>" required>
 		<br>
 		<label>Email</label>
-		<input type="text" name="alt_email" id="alt_email" value="<?php echo set_value('alt_email'); ?>"required>
+		<input type="text" name="alt_email" id="alt_email" value="<?php echo $prod_details['email']; ?>" required>
 		<br>
 		<label>Address 1</label>
-		<textarea rows="3" cols="50" name= addr1 required></textarea>
+		<textarea rows="3" cols="50" name= addr1 required><?php echo $prod_details['addr1'];?></textarea>
 		<br>
 		<label>Address 2</label>
-		<textarea rows="3" cols="50" name= addr2 required></textarea>
+		<textarea rows="3" cols="50" name= addr2 required><?php echo $prod_details['addr2']; ?></textarea>
 		<br>
 		<label>State</label>
 		<select name="state">
@@ -70,12 +76,12 @@
 		</select>
 		<br>
 		<label>Product Pic </label>
-		<input type="file" name="prod_pic[]" multiple required>
+		<input type="file" name="prod_pic[]" multiple>
 		<br>
 		<label>Expected Rate</label>
-		<input type="text" name="rate" id="rate" value="<?php echo set_value('rate'); ?>" required>
+		<input type="text" name="rate" id="rate" value="<?php echo $prod_details['rate']; ?>" required>
 		<br>
-		<button onclick="add_user();return false;">Add</button>
+		<button onclick="add_user();return false;">Update</button>
 		<br>
 		<span id="error">
 		<?php
@@ -98,8 +104,4 @@
 		document.getElementById("add_usr").submit();
 		return true;
 	}
-	$("#add_usr").validate({ // initialize the plugin
-        errorElement: 'div',
-        // your other rules and options
-    });
 </script>

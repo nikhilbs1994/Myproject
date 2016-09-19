@@ -17,6 +17,8 @@
     min-height: 620px;
     background-color: white;
     width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .header h1{
     position: relative;
@@ -30,6 +32,7 @@
     margin: 0 auto;
     background-color: #336699;
     width: 100%;
+    float: left;
 }
 
 #content_link{
@@ -41,11 +44,11 @@
 a{
     display: inline-block;
     position: relative;
-    left: 10px;
+    margin: 2px;
     background-color: #336699;
     color: white;
     padding: 5px;
-    right: 10px;
+    
     text-decoration: none;
     border-radius: 2px;
 
@@ -57,7 +60,7 @@ a:hover{
 .header a{
     display: inline-block;
     position: relative;
-    left: 10px;
+    
     background-color: #336699;
     color: white;
     padding: 5px;
@@ -113,9 +116,23 @@ margin: 0 auto;
 text-align: center;
 font-family: "Times New Roman", Times, serif;
 color: gray;
-width: 900px;
+width: 700px;
 height: 700px;
-width: 100%;
+
+}
+.aboutus{
+    
+-webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+-moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+margin: 0 auto;
+text-align: justify;
+padding: 20px;
+font-family: "Times New Roman", Times, serif;
+color: gray;
+width: 700px;
+height: 500px;
+
 }
 .signup1{
     
@@ -129,7 +146,7 @@ font-family: "Times New Roman", Times, serif;
 color: gray;
 width: 1200px;
 height: 120px;
-width: 100%;
+
 }
 .product_search{
     
@@ -346,6 +363,27 @@ div.error {
     height: 225px;
     margin: 10px;
 }
+.contact_us{
+    margin: 0 auto;
+    width: 700px;
+    text-align: justify;
+}
+.contact{
+    -webkit-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    box-shadow: 0px 0px 44px -12px rgba(0,0,0,0.56);
+    text-align: left;
+    font-family: "Times New Roman", Times, serif;
+    color: gray;
+    min-width: 180px;
+    max-width: 180px;
+    height: 200px;
+    margin: 15px;
+    padding: 10px;
+    display: inline-block;
+
+}
+
 .product_slide_text{
     
     text-align: justify;

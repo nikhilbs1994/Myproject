@@ -6,10 +6,7 @@
 */
 ?>
 <div class="content">
-<meta http-equiv="refresh" content="30; ,URL=<?php echo base_url()."/home/login";?>">
-	
-
-
+<a href="<?php echo base_url().'/seller/product'; ?>" style="float:left">Add Products</a>
 <?php
 	if (isset($prod_details)) {
 		
@@ -19,8 +16,10 @@
 			$prod_status="Inactive";
 		}elseif ($row->status == 1) {
 			$prod_status="Active";		
+		}elseif ($row->status == 2) {
+			$prod_status="Rejected";		
 		}else{
-			$prod_status="Rejected";
+			$prod_status="Sold";
 		}
 		
 		echo '<div class='."product_search".'>';
@@ -37,6 +36,6 @@
 	}
 	}
  ?>
- <a href="<?php echo base_url().'/seller/product'; ?>" style="margin: 0 auto;">Add Products</a>
+
 
 </div>

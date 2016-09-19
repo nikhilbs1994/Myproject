@@ -40,13 +40,16 @@
 		<br>
 		<button onclick="add_user();return false;">Signup</button>
 		<br>
-		<span id="status">
 		<?php
 			echo validation_errors(); 
-			if(isset($status)){echo "<br>".$status;} 
+			if(isset($error)){echo "<br>".$error;} 
 		?>
-		</span>	
-	</form>
+		</span>
+		<span id="status">
+		<?php
+			if(isset($status)){echo "<br>".$status;}
+			
+		?>
 
 </div>
 <?php 

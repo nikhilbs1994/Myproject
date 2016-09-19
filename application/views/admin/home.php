@@ -7,6 +7,7 @@
 */
 ?>
 <div class="content">
+<a href="<?php echo base_url().'/admin/add_category'; ?>" style=" float:left; ">Add Category</a>
 <?php
 	if (isset($prod_details)) {
 		
@@ -28,12 +29,12 @@
 		echo "<h4>".$row->prod_name."</h4>";
 		echo "<p>".$row->phno;
 		echo "<br>".$prod_status;
-		echo "<a href=".base_url().'seller/product/view_prod/'.$row->prod_id.'>View details</a></p>';
+		echo "<a href=".base_url().'admin/add_category/view_products/'.$row->prod_id.'>View details</a></p>';
 		echo "</div>";
 		echo "</div>";
 	}
 	}
 
  ?>
- <a href="<?php echo base_url().'/admin/add_category'; ?>">Add Category</a>
+ 
 </div>

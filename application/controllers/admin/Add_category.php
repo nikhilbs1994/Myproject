@@ -6,7 +6,14 @@
 */
 class Add_category extends MY_Controller
 {
-	/**
+	public function __construct()
+    {
+        parent::__construct();
+        
+        $this->load->model('admin/Product_model');
+
+    }
+    /**
     * 
     * function to load add category page of admin
     * @param void
@@ -15,8 +22,8 @@ class Add_category extends MY_Controller
 	public function index(){
 		$data['signup_name'] = $_SESSION['fname'];
     	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-      $data['login_link'] = base_url().'home/logout'; 
-      $data['login_name'] = 'Logout';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
     	$this->data = $data;
 		$this->middle = 'admin/add_category';
 		$this->layout();
@@ -35,8 +42,8 @@ class Add_category extends MY_Controller
 		if ($this->form_validation->run() == FALSE)    	{
 			$data['signup_name'] = $_SESSION['fname'];
 	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
+            $data['login_link'] = base_url().'home/logout'; 
+            $data['login_name'] = 'Logout';
 	    	$this->data = $data;
 			$this->middle = 'admin/add_category';
 			$this->layout();
@@ -70,13 +77,32 @@ class Add_category extends MY_Controller
 		$this->load->model('admin/Product_model');
  		$data['status'] = $this->Product_model->approve_prod($where);
  		$data['signup_name'] = $_SESSION['fname'];
-    $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-    $data['login_link'] = base_url().'home/logout'; 
-    $data['login_name'] = 'Logout';
-    $this->data = $data;
+        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
+        $this->data = $data;
 		$this->middle = 'admin/home';
 		$this->layout();
    	}
+        /**
+    * 
+    * function to reject new product by admin
+    * @param void
+    * @return $view
+    **/
+    public function reject_prod($prod_id){
+        $table_name = "product";
+        $where = array('prod_id' => $prod_id );
+        $this->load->model('admin/Product_model');
+        $data['status'] = $this->Product_model->reject_prod($where);
+        $data['signup_name'] = $_SESSION['fname'];
+        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
+        $this->data = $data;
+        $this->middle = 'admin/home';
+        $this->layout();
+    }
    	/**
     * 
     * function to load product details
@@ -84,26 +110,41 @@ class Add_category extends MY_Controller
     * @return $view
     **/
    	public function view_prod($prod_id){
-   		if(isset($_SESSION['usr_id'])){
+   		if(isset($_SESSION['user_id'])){
 	   		$where = array('prod_id' => $prod_id );
-	 		$this->load->model('admin/Product_model');
-	 		$data['prod_details'] =$this->Product_model->view_prod($where);
-	 		
-
-	    	$data['signup_name'] = $_SESSION['fname'];
+	 		$data['prod_details'] =$this->Product_model->view_product($where);
+	 		$data['signup_name'] = $_SESSION['fname'];
 	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
             $data['login_link'] = base_url().'home/logout'; 
             $data['login_name'] = 'Logout';
     	    $this->data = $data;
 			$this->middle = 'admin/view_product';
-            unset($_POST);
-			$this->layout();
+            $this->layout();
 		}else{
 			$session_data = array('prod_id' => $prod_id);
             $this->session->set_userdata($session_data);
             $this->login();
 		}
    	}
+        /**
+    * 
+    * function to load product details
+    * @param void
+    * @return $view
+    **/
+    public function view_products($prod_id){
+        $where = array('prod_id' => $prod_id );
+        $this->load->model('admin/Product_model');
+        $data['signup_name'] = $_SESSION['fname'];
+        $data['prod_details'] =$this->Product_model->view_product($where);
+        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
+        $data['login_link'] = base_url().'home/logout'; 
+        $data['login_name'] = 'Logout';
+        $this->data = $data;
+        $this->middle = 'admin/view_product';
+        $this->layout();
+    
+    }
    	/**
     * 
     * function to view login page

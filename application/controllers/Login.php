@@ -85,11 +85,7 @@ class Login extends MY_Controller
     **/
     public function view_prod($prod_id){
         $where = array('prod_id' => $prod_id );
-        
-         
         $data['prod_details'] = $this->product_model->view_product($where);
-       
-       
         $data['signup_name'] = $_SESSION['fname'];
         $data['signup_link'] = base_url().'admin/my_profile/view_profile';
         $data['login_link'] = base_url().'home/logout';;

@@ -62,6 +62,25 @@ class Product_model extends CI_Model{
 		}
 		
  	}
+ 		/**
+	* 
+	* function to approve product
+	* @param $where
+	* @return boolean
+	**/
+	function reject_prod($where)
+ 	{
+		$this->load->database();
+		$table_name = "product";
+		$data = array('status' => 2 );
+		$this->db->where($where);
+		if($this->db->update($table_name, $data)){
+		return true;
+		}else{
+		return false;
+		}
+		
+ 	}
  	/**
 	* 
 	* function to get category
@@ -119,6 +138,8 @@ class Product_model extends CI_Model{
 	public function view_home_prod(){
 		$this->load->database();
 		$table_name = 'product';
+		$where = array('status' => 1);
+		$this->db->where($where);
 		$this->db->order_by('prod_id','desc');
 		$query = $this->db->get($table_name,9);
 		if ( $query->num_rows() > 0 )

@@ -5,7 +5,7 @@
 	*View to home page 
 */
 ?>
-<body>
+
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <div class="content">
@@ -154,4 +154,3 @@ $('.prod_prev').click(function() {
         }   
 });
 </script>
-</body>

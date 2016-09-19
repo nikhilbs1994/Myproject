@@ -39,7 +39,8 @@
     		}
 		?>
 		<br>
-		<a href="<?php echo base_url().'admin/add_category/approve_prod/'.$prod_details['prod_id'] ?>">Approve</a>
+		<a href="<?php echo base_url().'admin/add_category/approve_prod/'.$prod_details['prod_id'] ?>">Approve</a>&nbsp	
+		<a href="<?php echo base_url().'admin/add_category/reject_prod/'.$prod_details['prod_id'] ?>">Reject</a>
 		
 		
 

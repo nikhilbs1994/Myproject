@@ -95,6 +95,42 @@ class Home extends MY_Controller{
 		$this->layout();
 
 	}
+    /**
+    * 
+    * function to view contactus page
+    * @param void
+    * @return $data
+    **/
+    public function contact_us($data = ''){
+        
+        $data['username'] = '';
+        $data['signup_name'] = "Signup";
+        $data['signup_link'] = base_url().'home/signup';
+        $data['login_link'] = base_url().'home/login';
+        $data['login_name'] = 'Login';
+        $this->data = $data;
+        $this->middle = 'contact_us';
+        $this->layout();
+
+    }
+        /**
+    * 
+    * function to view about us page
+    * @param void
+    * @return $data
+    **/
+    public function about_us($data = ''){
+        
+        $data['username'] = '';
+        $data['signup_name'] = "Signup";
+        $data['signup_link'] = base_url().'home/signup';
+        $data['login_link'] = base_url().'home/login';
+        $data['login_name'] = 'Login';
+        $this->data = $data;
+        $this->middle = 'about_us';
+        $this->layout();
+
+    }
 	/**
     * 
     * function to view forgot password page
