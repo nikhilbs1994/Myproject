@@ -5,6 +5,11 @@
   *Class to do product operation
 */	
 class Product extends MY_Controller{
+	
+	public function __construct(){
+        parent::__construct();
+
+    }
 	 /**
     * 
     * function to search products tags
@@ -48,15 +53,8 @@ class Product extends MY_Controller{
 		$this->form_validation->set_rules('search_tag','Search tag','required');
 		if ($this->form_validation->run() == FALSE)
 		{	
-			$data['username'] = '';
-			$data['signup_name'] = $_SESSION['fname'];
-			$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-			$data['login_link'] = base_url().'home/logout';        		
-			$data['login_name'] = 'Logout';
 	        $data['category']= $this->get_category();
-	    	$this->data = $data;
-			$this->middle = 'buyer/home';
-			$this->layout();
+			view_loader($data,'buyer/home');
 		}
 		else{
 			$where = array(	'category' => $_POST['category'],
@@ -67,16 +65,8 @@ class Product extends MY_Controller{
 			$row=$this->Product_model->search_product($where,$_POST['search_tag']);
 			
 			$data['product_details']= $row;
-			 $data['category'] = $this->get_category();
-			$data['username'] = '';
-			$data['signup_name'] = $_SESSION['fname'];
-			$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-        	$data['login_link'] = base_url().'home/logout'; 
-        	$data['login_name'] = 'Logout';
-			$this->data = $data;
-			$this->middle = 'buyer/home';
-			$this->layout();
-
+			$data['category'] = $this->get_category();
+			view_loader($data,'buyer/home');
 		}	
 	}
 	/**
@@ -100,13 +90,16 @@ class Product extends MY_Controller{
 		$where = array('prod_id' => $prod_id );
  		$this->load->model('buyer/Product_model');
  		$data['prod_details'] =$this->Product_model->view_prod($where);
- 		$data['signup_name'] = $_SESSION['fname'];
-    	$data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-    	$data['login_link'] = base_url().'home/logout'; 
-    	$data['login_name'] = 'Logout';
-    	$this->data = $data;
-		$this->middle = 'buyer/view_product';
-		$this->layout();
+		view_loader($data,'buyer/view_product');
+	}
+		/**
+    * 
+    * function to add status
+    * @param void
+    * @return $view
+    **/
+   	public function add_status($prod_id){
+		echo $prod_id;
 	}
 }
 ?>

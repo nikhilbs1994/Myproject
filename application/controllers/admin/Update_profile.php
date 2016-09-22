@@ -4,8 +4,12 @@
   *@version 1.0
   *Class to update profile details
 */			
- class Update_profile extends MY_Controller
- {
+ class Update_profile extends MY_Controller{
+
+ 	public function __construct(){
+        parent::__construct();
+
+    }
     /**
     * 
     * function to load profile details page

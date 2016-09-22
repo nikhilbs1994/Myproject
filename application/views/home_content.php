@@ -60,7 +60,7 @@
  ?>
  	   </div>
       <button class="prod_prev" style="display:none;">&lt;</button>
-      <button class="prod_next">&gt;</button>
+      <button class="prod_next" onload="prod_load()">&gt;</button>
       
    </div>
    </div>
@@ -110,7 +110,12 @@ $('.prev').click(function() {
   var ProductIndex = 4,
     prod = $('.prod_slide div'),
   prodAmt = prod.length;
-
+  window.onload =function prod_load(){
+    
+    if($('.prod_slide div').length<=4){
+       $('.prod_next').hide();
+    }
+  }
 
 function cycleProducts() {
   var item = $('.prod_slide div').eq(ProductIndex);
@@ -124,7 +129,7 @@ $('.prod_next').click(function() {
     $('.prod_next').show();
     $('.prod_prev').show();
     
-
+    //prod.addClass('animated slideOutLeft');
     prod.hide();
     for (var i = 0; i < 3; i++) {
        cycleProducts();

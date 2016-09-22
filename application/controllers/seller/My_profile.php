@@ -4,8 +4,12 @@
   *@version 1.0
   *Class to load profile operation
 */
-class My_profile extends MY_Controller
-{
+class My_profile extends MY_Controller{
+
+	public function __construct(){
+        parent::__construct();
+
+    }
     /**
     * 
     * function to load profile details

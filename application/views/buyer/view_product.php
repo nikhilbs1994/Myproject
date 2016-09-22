@@ -38,8 +38,34 @@
     			echo '<img src="'.base_url().$link.'" class="product_pic" >';
     		}
 		?>
+		<br>
+		<button onclick="report();">Report</button>
 		
-		
+	<div id="myReport" class="report">
+	  <div class="report-content">
+	    <span class="close">x</span>
+	    <h3>REPORT</h3>
+	    <form action="<?php echo base_url().'buyer/product/add_status/'.$prod_details['prod_id']?>" id="add_usr" method="post" 
+ 		enctype="multipart/form-data">
+	    <input type="radio" name="report_status" value="Ad is duplicate">Ad is duplicate
+	    <input type="radio" name="report_status" value="Seller not responding">Seller not responding
+	    <input type="radio" name="report_status" value="Product already sold">Product already sold
+	    <textarea placeholder="#More comments.." style=" width:400px; height:100px;"></textarea>
+	    <br>
+	    <input type="submit" name="Send">
+	    </form>
+	</div>
+
+</div>
 
 </div>
 </div>
+<script type="text/javascript">
+	var span = document.getElementsByClassName("close")[0];
+	function report(){
+		document.getElementById('myReport').style.display="block";
+	}
+	span.onclick = function() {
+    	document.getElementById('myReport').style.display = "none";
+	}
+</script>

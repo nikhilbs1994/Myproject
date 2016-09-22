@@ -6,8 +6,7 @@
 */
 class Home extends MY_Controller{
 
-	 public function __construct()
-    {
+	 public function __construct(){
         parent::__construct();
         
         $this->load->model('admin/product_model');
@@ -23,15 +22,7 @@ class Home extends MY_Controller{
 	public function index(){
         
         $data['prod_details'] = $this->Product_model->view_home_prod();
-		$data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-        $this->data = $data;
-		$this->middle = 'home_content';
-		$this->layout();
-		
+        view_loader($data,'home_content');
 	}
 	/**
     * 
@@ -45,36 +36,20 @@ class Home extends MY_Controller{
             $data['login_name'] = 'Logout';
             if($_SESSION['usr_type'] == 3){
                 $data['category'] =$this->get_category();
-                $data['signup_name'] = $_SESSION['fname'];
-                $data['login_link'] = 'logout';
-                $data['login_name'] = 'Logout';
-                $data['signup_link'] = base_url().'buyer/my_profile/view_profile';
-                $this->data = $data; 
-                $this->middle='buyer/home';
-                $this->layout();
-                
+                view_loader($data,'buyer/home');
             }elseif ($_SESSION['usr_type'] == 2){
                 $this->view_seller_prod($_SESSION['user_id']);
                 
             }else{
                 $this->view_admin_prod();
                 
-            }
-            
+            }  
         }
         else{
             $this->session->unset_userdata('user_id');
             $this->session->unset_userdata('fname');
             $this->session->unset_userdata('prod_id');
-            
-            $data['username'] = '';
-            $data['signup_name'] = "Signup";
-            $data['signup_link'] = base_url().'home/signup';
-            $data['login_link'] = base_url().'home/login';
-            $data['login_name'] = 'Login';
-    		$this->data = $data;
-    		$this->middle = 'login';
-    		$this->layout();
+            view_loader($data,'login');
         }
 	}
 	/**
@@ -84,16 +59,7 @@ class Home extends MY_Controller{
     * @return $data
     **/
 	public function signup($data = ''){
-		
-		$data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-		$this->data = $data;
-		$this->middle = 'signup';
-		$this->layout();
-
+		view_loader($data,'signup');
 	}
     /**
     * 
@@ -102,16 +68,7 @@ class Home extends MY_Controller{
     * @return $data
     **/
     public function contact_us($data = ''){
-        
-        $data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-        $this->data = $data;
-        $this->middle = 'contact_us';
-        $this->layout();
-
+        view_loader($data,'contact_us');
     }
         /**
     * 
@@ -120,16 +77,7 @@ class Home extends MY_Controller{
     * @return $data
     **/
     public function about_us($data = ''){
-        
-        $data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-        $this->data = $data;
-        $this->middle = 'about_us';
-        $this->layout();
-
+        view_loader($data,'about_us');
     }
 	/**
     * 
@@ -138,17 +86,9 @@ class Home extends MY_Controller{
     * @return $data
     **/
 	public function forgot_pwd($data=''){
-		
-		$data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-		$this->data = $data;
-		$this->middle = 'forgot_pwd';
-		$this->layout();
-
-	}    /**
+		view_loader($data,'forgot_pwd');
+	}    
+    /**
     * 
     * function to logout
     * @param null
@@ -159,14 +99,6 @@ class Home extends MY_Controller{
         $this->session->unset_userdata('fname');
         $this->session->unset_userdata('prod_id');
         $this->session->sess_destroy();
-        /*$data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-        $this->data = $data;
-        $this->middle = 'home';
-        $this->layout();*/
         $this->index();
     }
         /**
@@ -177,18 +109,8 @@ class Home extends MY_Controller{
     **/
     public function view_prod($prod_id){
         $where = array('prod_id' => $prod_id );
-        
-         
         $data['prod_details'] = $this->product_model->view_product($where);
-       
-       
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = 'logout';
-        $data['login_name'] = 'Logout';
-        $this->data=$data;
-        $this->middle='admin/view_product';
-        $this->layout();
+        view_loader($data,'admin/view_product');
     }
     /**
     * 
@@ -199,13 +121,7 @@ class Home extends MY_Controller{
     public function view_seller_prod($usr_id){
         $where = array('seller_id' => $usr_id );
         $data['prod_details'] = $this->Product_model->view_seller_prod($where);
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = 'logout';
-        $data['login_name'] = 'Logout';
-        $this->data=$data;
-        $this->middle='seller/home';
-        $this->layout();
+        view_loader($data,'seller/home');
     }
     /**
     * 
@@ -215,13 +131,7 @@ class Home extends MY_Controller{
     **/
     public function view_admin_prod(){
         $data['prod_details'] = $this->Product_model->view_admin_prod();
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = 'logout';
-        $data['login_name'] = 'Logout';
-        $this->data=$data;
-        $this->middle='admin/home';
-        $this->layout();
+        view_loader($data,'admin/home');
     }
     /**
     * 

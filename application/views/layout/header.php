@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title></title>
-	<link rel = "stylesheet" type = "text/css" href =  "http://10.4.3.155:100/css/style.css">
+	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url().'css/style.css'?>">
+	<link rel = "stylesheet" type = "text/css" href = "<?php echo base_url().'css/animate.css'?>">
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>

@@ -4,10 +4,9 @@
   *@version 1.0
   *Class to do product operation
 */
-class Product extends MY_Controller
-{
-	public function __construct()
-    {
+class Product extends MY_Controller{
+	
+	public function __construct(){
         parent::__construct();
         
         $this->load->model('seller/Product_model');
@@ -22,14 +21,7 @@ class Product extends MY_Controller
 	public function index(){
 
 		$data['category'] = $this->get_category();
-		$data['signup_name'] = $_SESSION['fname'];
-		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-		
-		$this->data = $data;
-		$this->middle = 'seller/add_product';
-		$this->layout();
+		view_loader($data,'seller/add_product');
 	}
 	/**
     * 
@@ -72,14 +64,9 @@ class Product extends MY_Controller
 		$data['category'] = $this->get_category();
 		if ($this->form_validation->run() == FALSE)
 		{	
-			$data['username'] = '';
-			$data['signup_name'] = $_SESSION['fname'];
-			$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-	        $data['login_link'] = 'logout';
-	        $data['login_name'] = 'Logout';
-	    	$this->data = $data;
-			$this->middle = 'seller/add_product';
-			$this->layout();
+
+			view_loader($data,'seller/add_product');
+
 		}
 		else{
 			$fi = new FilesystemIterator('uploads/products', FilesystemIterator::SKIP_DOTS);
@@ -149,13 +136,7 @@ class Product extends MY_Controller
 		    	
 
 				$this->my_library->send_mail($mail);
-				$data['signup_name'] = $_SESSION['fname'];
-				$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-			    $data['login_link'] = base_url().'home/logout'; 
-			    $data['login_name'] = 'Logout';
-		    	$this->data = $data;
-				$this->middle = 'seller/add_product';
-				$this->layout();
+				view_loader($data,'seller/add_product');
 						
 			}
 			
@@ -171,13 +152,7 @@ class Product extends MY_Controller
 		$where = array('prod_id' => $prod_id );
  		$this->load->model('buyer/Product_model');
  		$data['prod_details'] =$this->Product_model->view_prod($where);
- 		$data['signup_name'] = $_SESSION['fname'];
-		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-    	$this->data = $data;
-		$this->middle = 'seller/view_product';
-		$this->layout();
+		view_loader($data,'seller/view_product');
 	}
 	/**
     * 
@@ -190,14 +165,8 @@ class Product extends MY_Controller
         $this->Product_model->delete_prod($prod_id);
         $where = array('seller_id' => $_SESSION['user_id']);
         $data['prod_details'] = $this->Product_model->view_seller_prod($where);
+        view_loader($data,'seller/home');
 
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = 'logout';
-        $data['login_name'] = 'Logout';
-        $this->data=$data;
-        $this->middle='seller/home';
-        $this->layout();
     }
     /**
     * 
@@ -209,14 +178,7 @@ class Product extends MY_Controller
 		$where = array('prod_id' => $prod_id );
  		$data['prod_details'] =$this->Product_model->view_prod($where);
 		$data['category'] = $this->get_category();
-		$data['signup_name'] = $_SESSION['fname'];
-		$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-		
-		$this->data = $data;
-		$this->middle = 'seller/update_products';
-		$this->layout();
+		view_loader($data,'seller/update_products');
 	}
 	/**
     * 
@@ -230,13 +192,7 @@ class Product extends MY_Controller
         $data['status'] = $this->Product_model->sold_prod($where);
 		$where = array('seller_id' => $_SESSION['user_id']);
         $data['prod_details'] = $this->Product_model->view_seller_prod($where);
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'seller/my_profile/view_profile';
-        $data['login_link'] = 'logout';
-        $data['login_name'] = 'Logout';
-        $this->data=$data;
-        $this->middle='seller/home';
-        $this->layout();
+        view_loader($data,'seller/home');
     }
     /**
     * 
@@ -271,14 +227,7 @@ class Product extends MY_Controller
 			$where = array('prod_id' => $prod_id );
  			$data['prod_details'] =$this->Product_model->view_prod($where);
 			$data['category'] = $this->get_category();
-			$data['username'] = '';
-			$data['signup_name'] = $_SESSION['fname'];
-			$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-	        $data['login_link'] = 'logout';
-	        $data['login_name'] = 'Logout';
-	    	$this->data = $data;
-			$this->middle = 'seller/update_products';
-			$this->layout();
+			view_loader($data,'seller/update_products');
 		}
 		else{
 			
@@ -341,14 +290,7 @@ class Product extends MY_Controller
 			    	}else{
 			    		$data['error'] = 'Product not updated';
 			    	}
-			    	
-					$data['signup_name'] = $_SESSION['fname'];
-					$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-				    $data['login_link'] = base_url().'home/logout'; 
-				    $data['login_name'] = 'Logout';
-			    	$this->data = $data;
-					$this->middle = 'seller/add_product';
-					$this->layout();
+					view_loader($data,'seller/update_products');
 							
 				}
 			}else{
@@ -369,24 +311,11 @@ class Product extends MY_Controller
 						$data['status'] = 'Product updated';
 						$where = array('seller_id' => $_SESSION['user_id']);
 				        $data['prod_details'] = $this->Product_model->view_seller_prod($where);
-				        $data['signup_name'] = $_SESSION['fname'];
-				        $data['signup_link'] = base_url().'seller/my_profile/view_profile';
-				        $data['login_link'] = 'logout';
-				        $data['login_name'] = 'Logout';
-				        $this->data=$data;
-				        $this->middle='seller/home';
-				        $this->layout();
+				        view_loader($data,'seller/home');
 			    	}else{
 			    		$data['error'] = 'Product not updated';
 			    	}
-			    	
-					$data['signup_name'] = $_SESSION['fname'];
-					$data['signup_link'] = base_url().'seller/my_profile/view_profile';
-				    $data['login_link'] = base_url().'home/logout'; 
-				    $data['login_name'] = 'Logout';
-			    	$this->data = $data;
-					$this->middle = 'seller/add_product';
-					$this->layout();
+					view_loader($data,'seller/add_product');
 			}
 		}
     }

@@ -4,10 +4,9 @@
   *@version 1.0
   *Class to product opertion of admin 
 */
-class Add_category extends MY_Controller
-{
-	public function __construct()
-    {
+class Add_category extends MY_Controller{
+	
+    public function __construct(){
         parent::__construct();
         
         $this->load->model('admin/Product_model');
@@ -20,13 +19,8 @@ class Add_category extends MY_Controller
     * @return $view
     **/
 	public function index(){
-		$data['signup_name'] = $_SESSION['fname'];
-    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-    	$this->data = $data;
-		$this->middle = 'admin/add_category';
-		$this->layout();
+        $data='';
+        view_loader($data,'admin/add_category');
 	}
 	/**
     * 
@@ -40,29 +34,17 @@ class Add_category extends MY_Controller
     	$this->load->library('form_validation');
 		$this->form_validation->set_rules('category_name','Category Name','required');
 		if ($this->form_validation->run() == FALSE)    	{
-			$data['signup_name'] = $_SESSION['fname'];
-	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-            $data['login_link'] = base_url().'home/logout'; 
-            $data['login_name'] = 'Logout';
-	    	$this->data = $data;
-			$this->middle = 'admin/add_category';
-			$this->layout();
+            view_loader($data,'admin/add_category');
     	}
     	else{  
     		$data = array('ct_name' => $_POST['category_name'] );
 			$data['status'] = $this->Product_model->add_cate($data);
-			$data['signup_name'] = $_SESSION['fname'];
-	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-	    	$data['login_link'] = base_url().'home/logout'; 
-	    	$data['login_name'] = 'Logout';
-	    	if($data['status'] != 0){
+			if($data['status'] != 0){
 	    		$data['status'] = 'Category Added';
 	    	}else{
 	    		$data['error'] = 'Category not Added';
 	    	}
-	    	$this->data = $data;
-			$this->middle = 'admin/add_category';
-			$this->layout();
+            view_loader($data,'admin/add_category');
     	}
    	}
    	/**
@@ -72,19 +54,12 @@ class Add_category extends MY_Controller
     * @return $view
     **/
    	public function approve_prod($prod_id){
-		$table_name = "product";
 		$where = array('prod_id' => $prod_id );
 		$this->load->model('admin/Product_model');
  		$data['status'] = $this->Product_model->approve_prod($where);
- 		$data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-        $this->data = $data;
-		$this->middle = 'admin/home';
-		$this->layout();
+        view_loader($data,'admin/home');
    	}
-        /**
+    /**
     * 
     * function to reject new product by admin
     * @param void
@@ -95,13 +70,7 @@ class Add_category extends MY_Controller
         $where = array('prod_id' => $prod_id );
         $this->load->model('admin/Product_model');
         $data['status'] = $this->Product_model->reject_prod($where);
-        $data['signup_name'] = $_SESSION['fname'];
-        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-        $this->data = $data;
-        $this->middle = 'admin/home';
-        $this->layout();
+        view_loader($data,'admin/home');
     }
    	/**
     * 
@@ -113,13 +82,7 @@ class Add_category extends MY_Controller
    		if(isset($_SESSION['user_id'])){
 	   		$where = array('prod_id' => $prod_id );
 	 		$data['prod_details'] =$this->Product_model->view_product($where);
-	 		$data['signup_name'] = $_SESSION['fname'];
-	    	$data['signup_link'] = base_url().'admin/my_profile/view_profile';
-            $data['login_link'] = base_url().'home/logout'; 
-            $data['login_name'] = 'Logout';
-    	    $this->data = $data;
-			$this->middle = 'admin/view_product';
-            $this->layout();
+            view_loader($data,'admin/view_product');
 		}else{
 			$session_data = array('prod_id' => $prod_id);
             $this->session->set_userdata($session_data);
@@ -135,14 +98,8 @@ class Add_category extends MY_Controller
     public function view_products($prod_id){
         $where = array('prod_id' => $prod_id );
         $this->load->model('admin/Product_model');
-        $data['signup_name'] = $_SESSION['fname'];
         $data['prod_details'] =$this->Product_model->view_product($where);
-        $data['signup_link'] = base_url().'admin/my_profile/view_profile';
-        $data['login_link'] = base_url().'home/logout'; 
-        $data['login_name'] = 'Logout';
-        $this->data = $data;
-        $this->middle = 'admin/view_product';
-        $this->layout();
+        view_loader($data,'admin/view_product');
     
     }
    	/**
@@ -152,14 +109,8 @@ class Add_category extends MY_Controller
     * @return $view
     **/
    	public function login($data = ''){
-		$data['username'] = '';
-        $data['signup_name'] = "Signup";
-        $data['signup_link'] = base_url().'home/signup';
-        $data['login_link'] = base_url().'home/login';
-        $data['login_name'] = 'Login';
-		$this->data = $data;
-		$this->middle = 'login';
-		$this->layout();
+
+        view_loader($data,'login');
 	}	
 }
 ?>

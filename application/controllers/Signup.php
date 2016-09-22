@@ -5,6 +5,11 @@
   *Class to signup fuctionality
 */	
 class Signup extends MY_Controller{
+	
+	public function __construct(){
+        parent::__construct();
+
+    } 
 	/**
     * 
     * function to add user and data validation
@@ -30,14 +35,7 @@ class Signup extends MY_Controller{
 			$usr_type = 2;
 		}
     	if($this->form_validation->run() == FALSE){
-          	$data['username'] = '';
-	        $data['signup_name'] = "Signup";
-	        $data['signup_link'] = base_url().'home/signup';
-	        $data['login_link'] = base_url().'home/login';
-	        $data['login_name'] = 'Login';
-        	$this->data = $data;
-			$this->middle = 'signup';
-			$this->layout();
+			  view_loader($data,'signup');
     	}
     	else{        	
     		$target_file = basename($_FILES["profilepic"]["name"]);
@@ -50,33 +48,15 @@ class Signup extends MY_Controller{
 				$this->load->library('upload',$config);
 	
 				if(file_exists($target_file)){	
-
 					$data['status'] = 'File already exist';
-					
 					$img_status = 1;
-					$data['username'] = '';
-			        $data['signup_name'] = "Signup";
-			        $data['signup_link'] = base_url().'home/signup';
-			        $data['login_link'] = base_url().'home/login';
-			        $data['login_name'] = 'Login';
-					$this->data = $data;
-					$this->middle = 'signup';
-					$this->layout();
+					view_loader($data,'signup');
 				}else{
 					if(!$this->upload->do_upload('profilepic')){
-
-					$error = array('error' => $this->upload->display_errors());
-					$data['status'] = 'File not upload.'.$error['error'];
-					$img_status = 1;
-					$data['username'] = '';
-			        $data['signup_name'] = "Signup";
-			        $data['signup_link'] = base_url().'home/signup';
-			        $data['login_link'] = base_url().'home/login';
-			        $data['login_name'] = 'Login';
-					$this->data = $data;
-					$this->middle = 'signup';
-					$this->layout();
-					
+						$error = array('error' => $this->upload->display_errors());
+						$data['status'] = 'File not upload.'.$error['error'];
+						$img_status = 1;
+						view_loader($data,'signup');	
 					}
 				}
 			}
@@ -93,15 +73,7 @@ class Signup extends MY_Controller{
 				$data = array('user_id' => $insert_id,
 								'role_id' => $usr_type );
 				$data['status'] = $this->Signup_model->add_user_role($data);
-				//print_r($data);
-				$data['username'] = '';
-			    $data['signup_name'] = "Signup";
-			    $data['signup_link'] = base_url().'home/signup';
-			    $data['login_link'] = base_url().'home/login';
-			    $data['login_name'] = 'Login';	
-				$this->data = $data;
-				$this->middle = 'login';
-				$this->layout();
+				view_loader($data,'login');
 			}	
 		}
 	}

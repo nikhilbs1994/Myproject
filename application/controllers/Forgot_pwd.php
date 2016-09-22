@@ -4,8 +4,12 @@
   *@version 1.0
   *Class to foegot password
 */
-class Forgot_pwd extends MY_Controller
-{
+class Forgot_pwd extends MY_Controller{
+   
+    public function __construct(){
+        parent::__construct();
+
+    } 
     /**
     * 
     * function to check user is valid and send new password to mail
@@ -19,15 +23,7 @@ class Forgot_pwd extends MY_Controller
     	$this->load->model('Forgot_pwd_model');
     	if($usr_valid == 0){
     		$data['status'] = "Invalid username";
-    		echo "invalid";
-    		$data['username'] = '';
-    		$data['signup_name'] = "Signup";
-    		$data['signup_link'] = base_url().'home/signup';
-    		$data['login_link'] = base_url().'home/login';
-    		$data['login_name'] = 'Login';
-    		$this->data = $data;
-    		$this->middle = 'forgot_pwd';
-    		$this->layout();
+            view_loader($data,'forgot_pwd');
     	}else{
     		$this->load->helper('string');
 	 		$new_pwd = random_string('alnum',8);
@@ -46,15 +42,8 @@ class Forgot_pwd extends MY_Controller
 			$this->email->message('New password'.$new_pwd);
 			$this->email->send();	
     		echo $this->email->print_debugger();
-    		$data['username'] = '';
-    		$data['signup_name'] = "Signup";
-    		$data['signup_link'] = base_url().'home/signup';
-    		$data['login_link'] = base_url().'home/login';
-    		$data['login_name'] = 'Login';
-			$this->data = $data;
-			$this->middle = 'login';
-			$this->layout();
+            view_loader($data,'login');
     	}
 	}
 }
- ?>
+?>

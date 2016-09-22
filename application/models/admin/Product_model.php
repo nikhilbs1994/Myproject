@@ -120,9 +120,9 @@ class Product_model extends CI_Model{
 	public function view_admin_prod(){
 		$this->load->database();
 		$table_name = 'product';
+		
 		$query = $this->db->get($table_name);
-		if ( $query->num_rows() > 0 )
-		{
+		if ( $query->num_rows() > 0 ){
     		$row = $query->result();
     		return $row;
 		}else{
@@ -142,8 +142,7 @@ class Product_model extends CI_Model{
 		$this->db->where($where);
 		$this->db->order_by('prod_id','desc');
 		$query = $this->db->get($table_name,9);
-		if ( $query->num_rows() > 0 )
-		{
+		if ( $query->num_rows() > 0 ){
     		$row = $query->result();
     		return $row;
 		}else{

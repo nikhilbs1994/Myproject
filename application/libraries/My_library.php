@@ -8,20 +8,23 @@ class My_library{
 							'smtp_port' => 465,
 							'smtp_user' => 'nikhilbs1994@gmail.com', 
 							'smtp_pass' => 'john2335', 
-							'mailtype' => 'html',
+							'mailtype' => 'text/html',
 							'charset' => 'iso-8859-1',
 							'wordwrap' => TRUE
 							);
-			$CI =& get_instance();
-			$CI->load->library('email', $config); 
-			$CI->email->set_newline("\r\n");
-			$CI->email->from($send['from']); 
-			$CI->email->to($send['to']);
-			$CI->email->subject($send['subject']);
-			$CI->email->message($send['message']);
-			$CI->email->send();
-
-        	echo $CI->email->print_debugger();
+		$CI =& get_instance();
+		$CI->load->library('email', $config); 
+		$CI->email->set_newline("\r\n");
+		$CI->email->from($send['from']); 
+		$CI->email->to($send['to']);
+		$CI->email->subject($send['subject']);
+		$CI->email->message($send['message']);
+		$CI->email->set_mailtype("html");
+		if($CI->email->send() == 0){
+			throw new Exception("Mail not send", 1);
+			
+		}
+		
         	
 	}
 } 
