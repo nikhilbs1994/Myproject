@@ -1,3 +1,10 @@
+<?
+/*
+	@author Nikhil
+	*@version 1.0
+	*View to display forgot password form. 
+*/
+?>
 <div class="content">
 <div class="login">
 	<h2>LOGIN</h2>
@@ -6,10 +13,10 @@
 		<?php $this->load->library('form_validation');?>  
  		<?php echo form_open('form'); ?>
 		Username
-		<input type = "text" name = "username" value="<?php echo set_value('username'); ?>">
+		<input type="text" name="username" value="<?php echo set_value('username'); ?>">
 		<br><br>
 		
-		<input type = "submit" name = "login" value = "Forgot Password">
+		<input type="submit" name="login" value="Forgot Password">
 		<br>
 		<span id="status">
 		<?php

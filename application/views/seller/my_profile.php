@@ -1,3 +1,10 @@
+<?
+/*
+	@author Nikhil
+	*@version 1.0
+	*View to display Profile Details. 
+*/
+?>
 <div class="content">
 <div class="signup">
 	<h2>PROFILE</h2>
@@ -16,9 +23,9 @@
 		<br><br><br>
 		<label>User Type</label>
 		<label>
-		<?php if($user_details['usr_type']==1){
+		<?php if($user_details['usr_type'] == 1){
 			echo "Admin";
-		}elseif ($user_details['usr_type']==2) {
+		}elseif ($user_details['usr_type'] == 2) {
 			echo "Seller";
 		}else{
 			echo "Buyer";
